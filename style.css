@@ -161,3 +161,33 @@ body {
 .btn:active {
   transform: scale(0.96);
 }
+
+.window-btn {
+    -webkit-app-region: no-drag;
+
+    position: absolute;
+    top: 28px;
+    right: 39px;
+
+    border: none;
+    background: transparent;
+
+    color: #e794dc;
+
+    font-size: 20px;
+    font-weight: 800;
+
+    cursor: pointer;
+
+    z-index: 9999;
+
+    transition: transform 0.12s ease;
+}
+
+.window-btn:hover {
+    transform: scale(1.1);
+}
+
+.window-btn:active {
+    transform: scale(0.9);
+}

@@ -112,3 +112,11 @@ document.addEventListener('keydown', (e) => {
         playSound(clickSound);
     }
 });
+
+const closeBtn = document.getElementById('close-btn');
+
+if (closeBtn) {
+    closeBtn.addEventListener('click', () => {
+        window.electronAPI.closeApp();
+    });
+}

@@ -23,16 +23,12 @@ document.querySelectorAll('.btn').forEach(button => {
     button.addEventListener('click', () => {
         const value = button.dataset.value;
 
-        // Number buttons
         if (/^[0-9.]$/.test(value)) {
             playSound(numberClickSound);
-        }
-        // Everything except equals
-        else if (value !== '=') {
+        } else if (value !== '=') {
             playSound(clickSound);
         }
 
-        // AC
         if (value === 'AC') {
             equation = '';
             equationDisplay.textContent = '';
@@ -40,52 +36,79 @@ document.querySelectorAll('.btn').forEach(button => {
             return;
         }
 
-        // Backspace
         if (value === 'BACK') {
             equation = equation.slice(0, -1);
             updateDisplay();
             return;
         }
 
-        // Equals
         if (value === '=') {
             playSound(equalsSound);
-
             try {
                 const expression = equation.replace(/X/g, '*');
                 const result = eval(expression);
-
                 equationDisplay.textContent = equation;
                 resultDisplay.textContent = result;
-
                 equation = result.toString();
             } catch {
                 playSound(errorSound);
-
                 equationDisplay.textContent = '';
                 resultDisplay.textContent = 'Error';
                 equation = '';
             }
-
             return;
         }
 
-        // Plus / Minus
         if (value === '+/-') {
             if (!equation) return;
-
             if (equation.startsWith('-')) {
                 equation = equation.slice(1);
             } else {
                 equation = '-' + equation;
             }
-
             updateDisplay();
             return;
         }
 
-        // Normal input
         equation += value;
         updateDisplay();
     });
+});
+
+// Keyboard support
+document.addEventListener('keydown', (e) => {
+    const key = e.key;
+
+    if (key >= '0' && key <= '9' || key === '.') {
+        equation += key;
+        updateDisplay();
+        playSound(numberClickSound);
+    } else if (key === '+' || key === '-' || key === '*' || key === '/') {
+        equation += key;
+        updateDisplay();
+        playSound(clickSound);
+    } else if (key === 'Enter') {
+        try {
+            const expression = equation.replace(/X/g, '*');
+            const result = eval(expression);
+            equationDisplay.textContent = equation;
+            resultDisplay.textContent = result;
+            equation = result.toString();
+            playSound(equalsSound);
+        } catch {
+            playSound(errorSound);
+            equationDisplay.textContent = '';
+            resultDisplay.textContent = 'Error';
+            equation = '';
+        }
+    } else if (key === 'Backspace') {
+        equation = equation.slice(0, -1);
+        updateDisplay();
+        playSound(clickSound);
+    } else if (key === 'Escape') {
+        equation = '';
+        equationDisplay.textContent = '';
+        resultDisplay.textContent = '0';
+        playSound(clickSound);
+    }
 });

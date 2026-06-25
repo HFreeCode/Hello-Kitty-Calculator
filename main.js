@@ -14,7 +14,6 @@ function createWindow() {
   })
 
   win.webContents.session.clearCache()
-  win.webContents.openDevTools()
   win.loadFile('index.html')
 }
 

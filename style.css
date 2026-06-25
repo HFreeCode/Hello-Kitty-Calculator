@@ -1,0 +1,163 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Nunito', sans-serif;
+
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  overflow: hidden;
+  background: transparent;
+}
+
+.calculator {
+  -webkit-app-region: drag;
+  position: relative;
+
+  width: 425px;
+  height: 460px;
+
+  padding: 14px 24px 18px;
+
+  background-image: url('images/calculator-bg.png');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+}
+
+/* -------------------- */
+/* Decorations */
+/* -------------------- */
+
+.decorations {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.decorations img {
+  position: absolute;
+}
+
+.kitty {
+  width: 160px;
+  top: -51px;
+  left: 30px;
+  z-index: 10;
+}
+
+.bow {
+  width: 450px;
+  top: -162px;
+  right: -175px;
+  z-index: 10;
+}
+
+.hearts1 {
+  width: 66px;
+  top: 110px;
+  right: 18px;
+  z-index: 100;
+}
+
+.hearts2 {
+  width: 66px;
+  bottom: 32px;
+  left: 20px;
+  z-index: 100;
+}
+
+.hearts3 {
+  width: 60px;
+  top: 100px;
+  left: 12px;
+  z-index: 100;
+}
+
+/* -------------------- */
+/* Display */
+/* -------------------- */
+
+.display {
+  width: 88%;
+  height: 72px;
+
+  margin: 34px auto 8px auto;
+
+  background-image: url('images/display.png');
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: center;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+
+  padding: 0 18px;
+  overflow: hidden;
+}
+
+.equation {
+  font-size: 13px;
+  color: #b06080;
+}
+
+.result {
+  font-size: 22px;
+  font-weight: 800;
+  color: #b06080;
+}
+
+/* -------------------- */
+/* Buttons */
+/* -------------------- */
+
+.buttons {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+
+  gap: 4px;
+
+  width: 100%;
+
+  transform: translateY(8px) scale(0.88);
+  transform-origin: top center;
+}
+
+.btn {
+  -webkit-app-region: no-drag;
+
+  border: none;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+
+  width: 100%;
+
+  transition: transform 0.08s ease;
+}
+
+.btn img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.wide {
+  grid-column: span 2;
+}
+
+.btn:hover {
+  transform: scale(1.03);
+}
+
+.btn:active {
+  transform: scale(0.96);
+}
